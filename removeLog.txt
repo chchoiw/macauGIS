@@ -1,0 +1,4 @@
+rm -f /srv/www/htdocs/gis_exercise/awsData/contour/*20230911*
+rm: cannot remove '/srv/www/htdocs/gis_exercise/awsData/stationTimeSeries/*20230830*': No such file or directory
+rm: cannot remove '/srv/www/htdocs/gis_exercise/wlData/stationPoint/*20230830*': No such file or directory
+rm: cannot remove '/srv/www/htdocs/gis_exercise/wlData/stationTimeSeries/*20230830*': No such file or directory

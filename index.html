@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+
+    <!-- <link rel="stylesheet" href="https://js.arcgis.com/4.27/esri/themes/light/main.css">
+        <script src="https://js.arcgis.com/4.27/"></script> -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" 
+            integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+
+
+    <style>
+        .container {
+            width: 99vw;
+            /* max-width:px; */
+            max-height: 740px;
+            max-width: fit-content;
+
+            /* margin: 0 auto; */
+            /* aspect-ratio:5/8; */
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: row;
+            /* flex-direction:  column */
+        }
+
+        .containerLegend {
+            width: 5vw;
+            margin: 0 0 0 0px;
+            max-width: 40px;
+            max-height: 750px;
+            aspect-ratio: 1/16;
+            display: flex;
+
+        }
+
+        #map {
+            /* position: absolute; */
+            padding: 0;
+            /* margin: 0 0 0 5%; */
+
+            /* height: 800px; */
+            /* width: 500px; */
+            width: 90vw;
+            /* height:100%; */
+            max-width: 450px;
+            /* display:inline-block; */
+            z-index: 1;
+            aspect-ratio: 5/8;
+        }
+
+        #myCanvas {
+            padding: 0;
+            margin: 0;
+            max-height: 820px;
+            /* width: 5vw; */
+            /* max-width:40px; */
+            /* display:inline-block; */
+            /* display:inline-block; */
+            /* z-index: 2; */
+            aspect-ratio: 1/18;
+        }
+
+        .leaflet-control-wind-position {
+            background-color: rgba(255, 255, 255, 0.7);
+            padding: 0 5px;
+            margin: 0 !important;
+            color: #333;
+            font: 11px/1.5 "Helvetica Neue", Arial, Helvetica, sans-serif;
+        }
+
+        .wind-overlay {
+            position: absolute;
+            z-index: 2 !important;
+        }
+
+        .contour-overlay {
+            position: absolute;
+            z-index: 101 !important;
+        }
+
+        .chartClass {
+            position: relative;
+            /* display: inline-block; */
+            /* width:960px;
+            height:300px; */
+            /* right:550px; */
+            max-width: 960px;
+
+
+        }
+
+        .waterstation-icon {
+            width: 24px !important;
+            height: 24px !important;
+            margin-left: 0px;
+            margin-top: 0px;
+            top: -30px !important;
+            border-radius: 18px;
+            /* border: 2px solid #3F51B5; */
+            border: 2px solid white;
+            text-align: center;
+            /* color: #3F51B5; */
+            color: aliceblue;
+            background-color: #333;
+            /* translateY:-10px;
+             */
+
+            font-size: 16px;
+            opacity: 0.8;
+        }
+
+        .my-div-span-total {
+            position: relative;
+            top: -25px;
+        }
+
+        .stationVarsLayerDiv {
+            position: relative;
+            width: 0px;
+            height: 25px;
+            top: -5px;
+            left: -65px;
+        }
+
+        #PN_totalValeDiv {
+            position: relative;
+            top: 50px;
+            left: -60px;
+
+        }
+
+        #PE_totalValeDiv {
+            position: relative;
+            top: 5px;
+            left: 5px;
+
+        }
+
+        #EM_totalValeDiv {
+            position: relative;
+            top: -20px;
+            left: 5px;
+
+        }
+
+        #FM_totalValeDiv {
+            position: relative;
+            top: 0x;
+            left: -80px;
+        }
+
+        #UM_totalValeDiv {
+            position: relative;
+            top: 0px;
+            left: 0px;
+        }
+
+        #DC_totalValeDiv {
+            position: relative;
+            top: 10px;
+            left: 0px;
+        }
+
+        #MM_totalValeDiv {
+            position: relative;
+            top: 0px;
+            left: -80px;
+        }
+
+        #CG_totalValeDiv {
+            position: relative;
+            top: -60px;
+            left: -35px;
+        }
+
+        #KV_totalValeDiv {
+            position: relative;
+            top: 0px;
+            left: 0px;
+        }
+
+        #PG_totalValeDiv {
+            position: relative;
+            top: 20px;
+            left: 0px;
+        }
+
+        #PV_totalValeDiv {
+            position: relative;
+            top: 40px;
+            left: -80px;
+        }
+
+        #DP_totalValeDiv {
+            position: relative;
+            top: 0px;
+            left: -85px;
+        }
+
+        #ZM_totalValeDiv {
+            position: relative;
+            top: 0px;
+            left: 5px;
+        }
+
+        #JA_totalValeDiv {
+            position: relative;
+            top: 0px;
+            left: 5px;
+        }
+
+        #TG_totalValeDiv {
+            position: relative;
+            top: 0px;
+            left: 5px;
+        }
+
+        #CC_totalValeDiv {
+            position: relative;
+            top: 0px;
+            left: -85px;
+        }
+
+        .dataSpan {
+            position: relative;
+            width: 35px !important;
+            height: 24px !important;
+            margin-left: 0px;
+            margin-top: 0px;
+            /* border-radius: 18px; */
+            /* border: 2px solid #3F51B5;
+             */
+            border: 2px solid white;
+            text-align: center;
+            /* color: #3F51B5; */
+            background-color: #333;
+            /* translateY:-10px;
+             */
+            color: aliceblue;
+            font-size: 14px;
+            opacity: 0.8;
+            /* background-color:rgba(255,255,255,1);
+            color:rgba(0,0,0,0.7); */
+            top: -26px !important;
+            left: 30px !important;
+            font-size: 18px;
+        }
+
+        .toopltipClass {
+
+            position: relative;
+            width: 90px !important;
+            height: 24px !important;
+            margin-left: 3px;
+            margin-top: 0px;
+            /* border:2px solid white; */
+            text-align: center;
+            /* color: #3F51B5; */
+            /* background-color:#333; */
+            color: aliceblue;
+            font-size: 16px;
+            opacity: 0.8;
+            top: 15px;
+
+
+        }
+
+        #KV_WSPD_10_NameValue {
+            position: relative;
+            top: -15px !important;
+        }
+
+        #KV_HUMI_spanValue,
+        #KV_TEMP_spanValue,
+        #KV_WSPD_10_spanValue {
+            position: relative;
+            top: 0px !important;
+        }
+
+        #FM_WSPD_10_NameValue {
+            position: relative;
+            top: 15px !important;
+        }
+
+        #FM_HUMI_spanValue,
+        #FM_TEMP_spanValue,
+        #FM_WSPD_10_spanValue {
+            position: relative;
+            top: -60px !important;
+            left: -10px !important;
+        }
+
+        #FM_WSPD_10_NameValue {
+            position: relative;
+            top: 15px !important;
+        }
+
+        #CG_HUMI_spanValue,
+        #CG_TEMP_spanValue,
+        #CG_WSPD_10_spanValue {
+            position: relative;
+            top: -60px !important;
+            left: -10px !important;
+        }
+
+        .leaflet-canvas-layer {
+            opacity: 0.55;
+        }
+
+        .leaflet-shadow-pane {
+            z-index: 999 !important;
+        }
+
+
+        .custom-popup .leaflet-popup-content {
+            margin: 0px;
+            width: 100% !important;
+
+        }
+
+        .leaflet-popup-close-button {
+            display: none;
+        }
+
+        .custom-popup .leaflet-popup-content-wrapper {
+            background: #333;
+            /* color:#fff; */
+            /* font-size:16px;
+            line-height:24px; */
+
+            width: 120px !important;
+            height: 50px !important;
+            border-radius: 20px !important;
+            position: relative;
+            top: -26px !important;
+            /* position:relative; */
+            /* width: 24px !important;
+            height: 24px !important; */
+            margin-left: 0px;
+            margin-top: 0px;
+            /* border-radius: 18px; */
+            /* border: 2px solid #3F51B5;
+             */
+            border: 2px solid white;
+            text-align: center;
+            /* color: #3F51B5; */
+            /* background-color:#333; */
+            /* translateY:-10px;
+             */
+            color: aliceblue;
+            font-size: 16px;
+            /* opacity: 0.8; */
+            /* background-color:rgba(255,255,255,1);
+            color:rgba(0,0,0,0.7); */
+            /* top:-26px!important;
+            left:30px!important; */
+            /* left:30px!important; */
+        }
+
+        .custom-popup .leaflet-popup-content-wrapper a {
+            color: rgba(255, 255, 255, 0);
+        }
+
+        .custom-popup .leaflet-popup-tip-container {
+            width: 30px;
+            height: 15px;
+            color: rgba(255, 255, 255, 0);
+
+        }
+
+        .custom-popup .leaflet-popup-tip {
+            background: transparent;
+            border: none;
+            box-shadow: none;
+
+        }
+
+        .custom-popup .leaflet-popup-close-button {
+            width: 50px !important;
+            height: 20px !important;
+            border-radius: 10px !important;
+            position: relative;
+            top: -26px !important;
+        }
+
+        #showChartBtn {
+            display: inline-block !important;
+        }
+
+        html,
+        body {
+            margin: 0;
+            height: 100%;
+            width: 100%;
+            font-family: Helvetica;
+            background: #000;
+            color: gainsboro;
+        }
+
+        /* #root {
+        margin: 0 auto;
+        padding: 80px 20px;
+        } */
+
+        svg {
+            text-align: center;
+        }
+
+        text {
+            font-family: Helvetica;
+            font-size: 14px;
+            fill: gainsboro;
+            background: black !important;
+        }
+
+        text.title {
+            font-size: 22px;
+            fill: #fff;
+            /* Aqua; */
+        }
+
+        .subtitle text {
+            font-size: 12px;
+            text-decoration: underline;
+            fill: gray;
+        }
+
+        path.line {
+            fill: none;
+            /* stroke: #d3d3d3; */
+            /* stroke-width: 3px; */
+        }
+
+        /* .area
+        {
+            fill: white;
+        } */
+        path.area {
+            /* fill: #333; */
+            opacity: 0.7;
+        }
+
+        .axis path,
+        .axis line {
+            fill: none;
+            /* stroke: slategray; */
+            stroke: whitesmoke;
+            shape-rendering: crispEdges;
+        }
+
+        line.x,
+        line.y,
+        circle.y {
+            stroke: #fff;
+            /* Aqua; */
+        }
+
+        .velocity-overlay {
+            z-index: 0;
+            cursor: help !important;
+        }
+
+        .totalSpanTemp,
+        .totalSpanHumi,
+        .totalSpanWspd {
+            position: relative;
+            width: 33px !important;
+            height: 20px !important;
+            display: inline-block;
+            margin: 0px;
+            padding: 0 4px 4px 4px;
+
+            /* padding: 10px 0 10px 0; */
+        }
+
+        .totalSpanHumi:hover,
+        .totalSpanWspd:hover,
+        .totalSpanTemp:hover {
+            top: -7px;
+            transition: 0.3s;
+            transform: translateY(-10px);
+            /* font-size:18px */
+
+            /* inset 10px 10px 15px rgba(70, 70, 70, 0.12); */
+        }
+
+        .NaNClass {
+            position: relative;
+            display: none;
+        }
+
+        #showChartBtn {
+            position: relative;
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            /* border:#fff; */
+            background-color: rgba(0, 0, 0, 0);
+            border: none;
+            border-radius: 20px;
+            opacity: 1;
+            top: -12px;
+            left: 45px;
+            stroke-width: 1px;
+            scale: 1.5;
+            color: white;
+            stroke: rgba(0, 0, 0, 0);
+            box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+            padding: 2px;
+        }
+
+        #showChartBtn>svg {
+            left: -10px;
+        }
+
+        #showChartBtn:hover {
+
+            top: -10px;
+            transition: 0.3s;
+            box-shadow: inset -10px -10px 15px rgba(255, 255, 255, 0.5),
+                inset 10px 10px 15px rgba(70, 70, 70, 0.12);
+        }
+
+        /* #timeSlider
+        {
+            width:80px;
+            height:20px;
+            /* color:#fff!important; */
+        /* background-color: #fff!important; */
+        /* }  */
+        #timeSlider {
+            /* width:800px;
+            height:50px; */
+            background: #fff;
+            margin: 40px 40px 0 40px;
+            height: 10px;
+            width: 90vw;
+            max-width: 810px;
+        }
+
+        #play {
+            margin-left: 40px;
+        }
+
+        @media only screen and (max-width: 500px) {
+            #timeSlider {
+                /* width:800px;
+                height:50px; */
+                background: #fff;
+                height: 10px;
+                width: 90vw;
+                max-width: 720px;
+                margin: 40px 0 0 15px;
+            }
+
+            #play {
+                margin-left: 0px;
+            }
+
+            #myCanvas {
+                padding: 0;
+                margin: 0;
+                max-height: 720px;
+                width: 30px;
+                /* width: 5vw; */
+                /* max-width:40px; */
+                /* display:inline-block; */
+                /* display:inline-block; */
+                /* z-index: 2; */
+                aspect-ratio: 1/16;
+            }
+        }
+
+        #timeSlider .noUi-connect {
+            background: #c0392b !important;
+            /* #c0392b; */
+        }
+
+        #timeSlider .noUi-handle {
+            height: 18px;
+            width: 18px;
+            top: -5px;
+            right: -9px;
+            border-radius: 9px;
+        }
+
+        .windBarbClass {
+
+            pointer-events: none;
+
+        }
+
+        button {
+            background-color: rgba(0, 0, 0, 0);
+        }
+
+        .windBarbDivClass {
+            /* width:0!important; */
+            pointer-events: none;
+        }
+
+        .colorBar {
+            border: 1px solid #d3d3d3;
+            display: inline-block;
+            width: 40px;
+            height: 800px;
+        }
+
+        .swal2-html-container,
+        .swal2-popup {
+            max-width: 950px !important;
+            margin: 0px;
+            padding: 0px;
+        }
+
+        .swal2-popup {
+            background-color: #333 !important;
+        }
+    </style>
+</head>
+
+<body>
+    <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+    <script>
+        var imageData;
+    </script>
+    <!-- <div id="viewDiv"></div> -->
+    <!-- <div id="map"></div>
+         -->
+    <div class="container">
+        <div id="datetime" style="display:block;height:30px;margin:0px auto 10px auto;font-size: 25px;"></div>
+    </div>
+
+    <div class="container">
+
+        <div style="">
+
+            <div id="map"> </div>
+        </div>
+
+        <div class="containerLegend">
+
+            <canvas id="myCanvas" width="40" height="720" lastVarName="" varName=""></canvas>
+        </div>
+        <div style="display:flex;flex-direction: column;justify-content:space-between ">
+            <div id="my_dataviz" class=""></div>
+            <div style="margin-bottom: 35px;color:#fff;align-self:  flex-start;justify-content:flex-end;">
+                <button id="play" style="padding:0;margin-right:10px;font-size: 19px;;color:#fff">play
+                </button>
+                <button id="stop" style="padding:0;margin-right:30px;font-size: 19px;color:#fff">stop</button>
+                <div style="display:flex">
+
+                    <div id="timeSlider" class=""></div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.7.1/nouislider.css"
+        integrity="sha512-MKxcSu/LDtbIYHBNAWUQwfB3iVoG9xeMCm32QV5hZ/9lFaQZJVaXfz9aFa0IZExWzCpm7OWvp9zq9gVip/nLMg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- <link  href="script/nouislider.min.css"/> -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <link rel="stylesheet" href="script/Leaflet.Coordinates-0.1.5.css">
+    <script src="script/Leaflet.Coordinates-0.1.5.min.js"></script>
+    <!-- <script src="script/leaflet.filelayer.js"></script> -->
+    <!-- <script type="text/javascript" src="https://unpkg.com/leaflet-contour"></script> -->
+    <!-- <script src="script/wind-js-leaflet.js"></script> -->
+    <script src="leaflet-velocity.js"></script>
+    <script src="mycontour.js"></script>
+    <!-- <script src="script/d3-v3/d3.js"></script>
+         <script src="script/d3-v3/src/time/scale.js"></script> -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js" integrity="sha512-M7nHCiNUOwFt6Us3r8alutZLm9qMt4s9951uo8jqO4UwJ1hziseL6O3ndFyigx6+LREfZqnhHxYjKRJ8ZQ69DQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+    <script src="https://d3js.org/d3.v6.js"></script>
+    <!-- <script src="https://unpkg.com/geojson-vt@3.2.0/geojson-vt.js"></script> -->
+    <script src="https://unpkg.com/leaflet.vectorgrid@latest/dist/Leaflet.VectorGrid.js"></script>
+
+    <!-- <script src="script/leaflet-contour.js"></script> -->
+    <!-- <script src="node_modules/d3/dist/d3.min.js"></script>
+          <script src="node_modules/d3/src/index.js"></script> -->
+    <!-- <script src="node_modules/d3-contour/dist/d3-contour.min.js"></script> -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script> -->
+    <script src="https://d3js.org/d3-array.v1.min.js"></script>
+    <script src="https://d3js.org/d3-geo.v1.min.js"></script>
+
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script> -->
+    <script src="script/topojson/topojson.min.js"></script>
+    <!-- <script src="mvi.js"></script> -->
+    <script src="script/leaflet-windbarb.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.7.1/nouislider.min.js"
+        integrity="sha512-UOJe4paV6hYWBnS0c9GnIRH8PLm2nFK22uhfAvsTIqd3uwnWsVri1OPn5fJYdLtGY3wB11LGHJ4yPU1WFJeBYQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.9/dayjs.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="gis.js"></script>
+    <script src="mySlider.js"></script>
+
+    <!-- <div id="lineChart_TEMP" style="display:inline-block;width:400px;height:200px;"></div>
+        <div id="lineChart_HUMI" style="display:inline-block;width:400px;height:200px;"></div>
+        <div id="lineChart_WSPD_10" style="display:inline-block;width:400px;height:200px;"></div>
+         <canvas id="myCanvas2" width="500" height="800" style="border:1px solid green;"></canvas> -->
+    <script src="https://cdn.jsdelivr.net/npm/d3-array@3"></script>
+    <script src="https://cdn.jsdelivr.net/npm/d3-contour@4"></script>
+    <script>
+        // 1. 時間軸跟著走
+        // 2. 站點風標不跟著走
+        // 3. onadd/remove clear timeout
+        // 4. 拉timebar set loopvar
+        // 5. 插值
+        // 6. NULL值變0?
+        // 7. 降水
+        // 8. linechart 斷點調較
+        // https://www.freecodecamp.org/news/how-to-work-with-d3-jss-general-update-pattern-8adce8d55418/
+
+
+    </script>
+    <!-- mercator cal scale sol https://stackoverflow.com/questions/44612175/calculating-mercator-d3-scaling-to-match-leaflet-zoom-level -->
+    <!-- http://www.nco.ncep.noaa.gov/pmb/docs/grib2/grib2_table3-4.shtml -->
+    <!--  https://www.onlineconversion.com/map_decimaldegrees.htm -->
+    <!-- macau map geojson https://github.com/ngsiolei/macau-map-data/blob/master/macau.json?short_path=33b15f2 -->
+    <!-- convert geojson to topo:json https://mapshaper.org/ -->
+    <!-- https://zhuanlan.zhihu.com/p/227857813 -->
+    <!-- https://stackoverflow.com/questions/75166665/how-can-i-dynamically-change-the-background-color-of-all-leaflet-popups-on-the-m -->
+    <!-- https://stackoverflow.com/questions/48107405/how-to-cut-y-axis-to-make-the-chart-look-better -->
+    <!-- https://sharkcoder.com/data-visualization/d3-line-chart -->
+    <!-- https://blog.csdn.net/MooreLxr/article/details/81394122 -->
+    <!-- https://blog.logrocket.com/three-ways-style-css-box-shadow-effects/ -->
+    <!-- https://plnkr.co/edit/CDdbLRTLK9esC2UeHbTE?p=preview&preview -->
+</body>
+
+</html>

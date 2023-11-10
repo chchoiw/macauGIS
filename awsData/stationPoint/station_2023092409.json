@@ -1,0 +1,293 @@
+{
+    "0": [
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    113.5786111111111,
+                    22.13722222222222
+                ]
+            },
+            "properties": {
+                "TEMP": 28.7,
+                "WSPD_10": 4.0,
+                "WDIR_10": 30,
+                "HUMI": 79.0,
+                "name": "CC"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    113.55101111111111,
+                    22.197644444444446
+                ]
+            },
+            "properties": {
+                "TEMP": 28.8,
+                "WSPD_10": 2.0,
+                "WDIR_10": 31,
+                "HUMI": 78.0,
+                "name": "CG"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    113.55111111111111,
+                    22.11722222222222
+                ]
+            },
+            "properties": {
+                "TEMP": 29.1,
+                "WSPD_10": 1.3,
+                "WDIR_10": 30,
+                "HUMI": 80.0,
+                "name": "DC"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    113.54333333333334,
+                    22.21527777777778
+                ]
+            },
+            "properties": {
+                "TEMP": 29.3,
+                "WSPD_10": 2.6,
+                "WDIR_10": 63,
+                "HUMI": 77.0,
+                "name": "DP"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    113.56,
+                    22.20722222222222
+                ]
+            },
+            "properties": {
+                "TEMP": 30.2,
+                "WSPD_10": 1.5,
+                "WDIR_10": 351,
+                "HUMI": 69.0,
+                "name": "EM"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    113.54222222222222,
+                    22.197222222222223
+                ]
+            },
+            "properties": {
+                "TEMP": 29.1,
+                "WSPD_10": 3.6,
+                "WDIR_10": 75,
+                "HUMI": 74.0,
+                "name": "FM"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    113.5425,
+                    22.154999999999998
+                ]
+            },
+            "properties": {
+                "TEMP": 29.3,
+                "WSPD_10": 1.8,
+                "WDIR_10": 223,
+                "HUMI": 78.0,
+                "name": "JA"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    113.58027777777778,
+                    22.134722222222223
+                ]
+            },
+            "properties": {
+                "TEMP": 28.5,
+                "WSPD_10": 4.0,
+                "WDIR_10": 38,
+                "HUMI": 90.0,
+                "name": "KV"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    113.53055555555555,
+                    22.185833333333335
+                ]
+            },
+            "properties": {
+                "TEMP": 29.3,
+                "WSPD_10": 3.1,
+                "WDIR_10": 48,
+                "HUMI": 74.0,
+                "name": "MM"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    113.55833333333334,
+                    22.196666666666665
+                ]
+            },
+            "properties": {
+                "TEMP": 29.6,
+                "WSPD_10": 3.6,
+                "WDIR_10": 31,
+                "HUMI": 72.0,
+                "name": "PE"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    113.54166666666667,
+                    22.180833333333336
+                ]
+            },
+            "properties": {
+                "TEMP": -999,
+                "WSPD_10": 5.8,
+                "WDIR_10": 66,
+                "HUMI": -999,
+                "name": "PG"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    113.56,
+                    22.191666666666666
+                ]
+            },
+            "properties": {
+                "TEMP": -999,
+                "WSPD_10": 5.9,
+                "WDIR_10": 42,
+                "HUMI": -999,
+                "name": "PN"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    113.56,
+                    2.1816666666666666
+                ]
+            },
+            "properties": {
+                "TEMP": -999,
+                "WSPD_10": 5.7,
+                "WDIR_10": 47,
+                "HUMI": -999,
+                "name": "PS"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    113.53472222222221,
+                    22.175555555555558
+                ]
+            },
+            "properties": {
+                "TEMP": -999,
+                "WSPD_10": 5.2,
+                "WDIR_10": 68,
+                "HUMI": -999,
+                "name": "PV"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    113.56861111111111,
+                    22.159444444444443
+                ]
+            },
+            "properties": {
+                "TEMP": 29.6,
+                "WSPD_10": 3.5,
+                "WDIR_10": 31,
+                "HUMI": 80.0,
+                "name": "TG"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    113.54694444444445,
+                    22.131666666666668
+                ]
+            },
+            "properties": {
+                "TEMP": 29.7,
+                "WSPD_10": 3.4,
+                "WDIR_10": 63,
+                "HUMI": 82.0,
+                "name": "UM"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    113.58031944444444,
+                    22.199275
+                ]
+            },
+            "properties": {
+                "TEMP": 29.8,
+                "WSPD_10": 7.0,
+                "WDIR_10": 38,
+                "HUMI": 71.0,
+                "name": "ZM"
+            }
+        }
+    ]
+}

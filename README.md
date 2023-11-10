@@ -6,6 +6,7 @@ MacauGIS is a self-study thesis system that focuses on representing the temperat
 2. Contour display
 3. Time series
 4. Slider for controlling the displayed map
+5. interactie for three compontents: map, time series and slider.
    
 ##  How It Works
 To use MacauGIS, follow these steps:
